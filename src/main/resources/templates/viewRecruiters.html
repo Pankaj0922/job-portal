@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Recruiters</title>
+    <!-- Include Bootstrap CSS -->
+
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title text-center">All Recruiters</h2>
+            </div>
+            <div class="card-body">
+                <!-- Use Bootstrap table styling -->
+                <table class="table table-bordered table-dark">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <!-- Add other columns as needed -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Use Thymeleaf to iterate over the list of recruiters -->
+                    <tr th:each="recruiter : ${recruiters}">
+                        <td th:text="${recruiter.recruiter_id}"></td>
+                        <td th:text="${recruiter.email}"></td>
+                        <td th:text="${recruiter.username}"></td>
+                        <td th:text="${recruiter.password}"></td>
+                        <!-- Add other columns as needed -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

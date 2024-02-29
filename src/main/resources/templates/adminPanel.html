@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<section>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card shadow-lg " style="width: 400px; height: 600px;">
+            <img alt="cat" class="card-img-top img-fluid " style="max-height: 100%; object-fit: contain;"
+                 th:src="@{img/admin.png}">
+            <div class="card-body text-center">
+                <h5 class="card-title">Admin Tools</h5>
+                <a class="btn btn-dark" href="/createRecruiter">Create Recruiter</a>
+                <a class="btn btn-dark" href="/createTeamleader">Create Team Leader</a>
+                <div class="container m-1">
+                    <a class="btn btn-dark " href="/viewRecruiters">View Recruiter</a>
+                    <a class="btn btn-dark" href="/viewTeamLeaders">View Team Leaders</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
