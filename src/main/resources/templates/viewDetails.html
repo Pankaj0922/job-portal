@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
+    <style>
+        /* Custom CSS for table border */
+        .custom-table {
+            border: 1px solid #000;
+            /* Sets the border to 1px solid black */
+            width: 50%;
+            /* Set the table width to 50% of the container */
+            margin: 0 auto;
+            /* Center the table horizontally */
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 8px;
+            /* Add padding to table cells */
+        }
+    </style>
+</head>
+
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="card transparent-card">
+            <div class="card-header">
+                <h2 class="card-title text-center">User Details</h2>
+            </div>
+            <div class="card-body">
+                <table class="table custom-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td th:text="${recruiter.username}"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td th:text="${recruiter.password}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td th:text="${recruiter.email}"></td>
+                    </tr>
+                    <tr>
+                        <td>Role:</td>
+                        <td th:text="${recruiter.role}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
