@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Jobs</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
+</head>
+<body>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="text-center text-primary">All Jobs</h5>
+                <div class="text-center text-primary">
+                    <i class="bx bx-laptop" style="font-size: 50px  "></i>
+                </div>
+                <th:block th:if="${session.msg}">
+                    <p class="text-center text-success fs-4">[[${session.msg}]]</p>
+                    <th:block th:text="${@vacancyServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <div class="card mt-2 transparent-card" th:each="vacancy : ${vacancies}">
+
+                    <div class="card-body">
+
+                        <h4><b>Title: </b>[[${vacancy.title}]]</h4>
+                        <small><b>Description :</b>[[${vacancy.description}]] </small>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+
+                                <input class="form-control form-control-sm mt-2" readonly
+                                       th:value=" 'Location : ' + ${vacancy.location}" type="text">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm mt-2" readonly
+                                       th:value=" 'Category : ' + ${vacancy.category}"
+                                       type="text">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm mt-2" readonly
+                                       th:value=" 'Status : ' + ${vacancy.status} "
+                                       type="text">
+                            </div>
+                        </div>
+                        <h6 th:text="${vacancy.active_date}"></h6>
+                        <div class="text-center" th:object="${vacancy}">
+                            <a class="btn btn-sm bg-success text-white"
+                               th:href="@{'/editJob/'+${vacancy.vacancy_id}}">Edit</a>
+                            <a class="btn btn-sm bg-danger text-white" th:href="@{'/deleteJob/'+${vacancy.vacancy_id}}">Delete</a>
+                        </div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

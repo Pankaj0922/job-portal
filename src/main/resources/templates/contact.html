@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Contact Form</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../static/css/contact.css" rel="stylesheet" th:href="@{/css/contact.css}"/>
+</head>
+<body>
+<div class="contact-container">
+    <form action="https://api.web3forms.com/submit" class="contact-left" method="post">
+        <div class="contact-left-title">
+            <h2>Get in touch</h2>
+            <hr>
+        </div>
+        <input name="access_key" type="hidden" value="c0326bd1-b674-4986-ba70-601705cdb824">
+        <input class="contact-inputs" name="name" placeholder="Your Name" required type="text">
+        <input class="contact-inputs" name="email" placeholder="Your Email" required type="email">
+        <textarea class="contact-inputs" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit <img alt="" th:src="@{img/assets/arrow_icon.png}"></button>
+    </form>
+    <div class="contact-right">
+        <img alt="" th:src="@{img/assets/right_img.png}">
+    </div>
+</div>
+
+</body>
+</html>
