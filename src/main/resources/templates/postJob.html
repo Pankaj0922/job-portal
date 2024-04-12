@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Post Jobs</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="col-md-10 offset-md-1">
+        <div class="card transparent-card">
+            <div class="card-body">
+                <div class="text-center text-success">
+                    <i class="bx bx-laptop" style="font-size: 50px"></i>
+                    <h3>Post Jobs</h3>
+                    <th:block th:if="${session.msg}">
+                        <p class="text-center text-success fs-4">[[${session.msg}]]</p>
+                        <th:block th:text="${@vacancyServiceImpl.removeSessionMessage()}"></th:block>
+                    </th:block>
+                </div>
+                <form method="post" th:action="@{/postJob}" th:object="${vacancy}">
+                    <div class="form-group">
+                        <label>Enter Title</label>
+                        <input
+                                class="form-control"
+                                name="title"
+                                placeholder="Eg : Java Developer"
+                                required
+                                th:field="*{title}"
+                                type="text"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Active Date</label>
+                        <input
+                                class="form-control"
+                                name="active_date"
+                                placeholder="Eg : Java Developer"
+                                required
+                                th:field="*{active_date}"
+                                type="date"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Location</label>
+                            <select
+                                    class="custom-select"
+                                    id="inLineFormCustomSelectPref"
+                                    name="location"
+                                    th:field="*{location}"
+                            >
+                                <option selected value="">Choose...</option>
+                                <!-- Ensure all select options have a value attribute -->
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Category</label>
+                            <select
+                                    class="custom-select"
+                                    id="inLineCustomSelectPref"
+                                    name="category"
+                                    th:field="*{category}"
+                            >
+                                <option selected value="">Choose...</option>
+                                <!-- Ensure all select options have a value attribute -->
+                                <option value="IT">IT</option>
+                                <option value="Developer">Developer</option>
+                                <option value="Frontend">Front-End</option>
+                                <option value="Backend">Back-End</option>
+                                <option value="Banking">Banking</option>
+                                <option value="Teacher">Teacher</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Status</label>
+                            <select class="form-control" name="status" th:field="*{status}">
+                                <option class="Active" value="Active">Active</option>
+                                <option class="Inactive" value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Description</label>
+                        <textarea
+                                class="form-control"
+                                name="description"
+                                required
+                                rows="6"
+                                th:field="*{description}"
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-success">Publish Job</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -4,6 +4,9 @@ import com.portal.job.entities.*;
 import com.portal.job.repository.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -29,6 +32,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private VacancyRepository vacancyRepository;
+
+    @Autowired
+    private ApplicantRepository applicantRepository;
 
     @Override
     public void createRecruiterLogin(Recruiter recruiter) {
@@ -89,9 +95,52 @@ public class AdminServiceImpl implements AdminService {
         return teamLeaderRepository.findAll();
     }
 
+    @Override
+    public Recruiter getRecruiterById(Long id) {
+        Optional<Recruiter> recruiter = recruiterRepository.findById(id);
+        return recruiter.orElse(null);
+    }
+
     public void removeSessionMessage() {
         HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         session.removeAttribute("msg");
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Admin> admin = adminRepository.findByUsername(username);
+        Optional<Applicant> applicant = applicantRepository.findByUsername(username);
+        if (admin.isPresent()) {
+            var adminObj = admin.get();
+            return User.builder()
+                    .username(adminObj.getUsername())
+                    .password(adminObj.getPassword())
+                    .roles(getRoles(adminObj))
+                    .build();
+
+        } else if (applicant.isPresent()) {
+            var applicantObj = applicant.get();
+            return User.builder()
+                    .username(applicantObj.getUsername())
+                    .password(applicantObj.getPassword())
+                    .roles(getRole(applicantObj))
+                    .build();
+        } else {
+            throw new UsernameNotFoundException(username);
+        }
+    }
+
+    private String[] getRoles(Admin adminObj) {
+        if (adminObj.getRole() == null) {
+            return new String[]{"ADMIN"};
+        }
+        return adminObj.getRole().split(",");
+    }
+
+    private String getRole(Applicant applicantObj) {
+        if (applicantObj.getRole() == null) {
+            return new String("USER");
+        }
+        return applicantObj.getRole();
+    }
 }

@@ -1,8 +1,7 @@
 package com.portal.job.entities;
 
+import groovy.transform.builder.Builder;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,13 +12,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Applicant extends User {
+@Builder
+public class Applicant extends Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicant_id;
     @ManyToOne
     private Recruiter recruiter;
-    private String role = "Applicant";
+    
 
     public Applicant(String email, String encode, String role, String username) {
     }

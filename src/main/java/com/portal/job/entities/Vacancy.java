@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -19,5 +20,9 @@ public class Vacancy {
     private String description;
     @ManyToOne
     private Company company;
-    private Date active_date;
+    private String active_date;
+    private String location;
+    private String category;
+    private String status;
+
 }

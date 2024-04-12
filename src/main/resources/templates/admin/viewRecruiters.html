@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: Layout(~{::title},~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Recruiters</title>
-    <!-- Include Bootstrap CSS -->
 
+    <title>All Recruiters</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
 </head>
 <body>
 <section>
     <div class="container mt-5">
-        <div class="card">
+        <div class="card transparent-card-col">
             <div class="card-header">
                 <h2 class="card-title text-center">All Recruiters</h2>
             </div>
             <div class="card-body">
                 <!-- Use Bootstrap table styling -->
-                <table class="table table-bordered table-dark">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Id</th>
                         <th>Email</th>
                         <th>Username</th>
                         <th>Password</th>
+                        <th>Action</th>
                         <!-- Add other columns as needed -->
                     </tr>
                     </thead>
@@ -32,6 +33,10 @@
                         <td th:text="${recruiter.email}"></td>
                         <td th:text="${recruiter.username}"></td>
                         <td th:text="${recruiter.password}"></td>
+                        <td>
+                            <a class="btn btn-primary"
+                               th:href="@{'/viewDetails/'+${recruiter.recruiter_id}}">Details</a>
+                        </td>
                         <!-- Add other columns as needed -->
                     </tr>
                     </tbody>

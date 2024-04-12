@@ -10,14 +10,9 @@ spring:
       ddl-auto: update
     show-sql: true
     generate-ddl: true
-  security:
-    user:
-      name: Pankaj
-      password: Pankaj
+
   thymeleaf:
     prefix: classpath:/templates/
-
-
 
 server:
   port: 8080

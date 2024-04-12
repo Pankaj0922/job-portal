@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TeamLeader extends User {
+public class TeamLeader extends Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tl_id;

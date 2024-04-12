@@ -1,10 +1,11 @@
 package com.portal.job.service;
 
 import com.portal.job.entities.*;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface AdminService {
+public interface AdminService extends UserDetailsService {
 
     void createRecruiterLogin(Recruiter recruiter);
 
@@ -24,5 +25,7 @@ public interface AdminService {
 
     List<TeamLeader> getAllTeamLeaders();
 
-    
+    public Recruiter getRecruiterById(Long id);
+
+
 }

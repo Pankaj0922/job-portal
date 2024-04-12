@@ -1,8 +1,6 @@
 package com.portal.job.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Admin extends User {
+public class Admin extends Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long admin_id;
@@ -25,4 +23,5 @@ public class Admin extends User {
 
     @OneToMany(mappedBy = "admin")
     private List<Company> companies;
+    
 }

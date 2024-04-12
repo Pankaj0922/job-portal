@@ -1,8 +1,6 @@
 package com.portal.job.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Recruiter extends User {
+public class Recruiter extends Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recruiter_id;

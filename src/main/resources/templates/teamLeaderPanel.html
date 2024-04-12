@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: Layout(~{::title},~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel</title>
+    <title>Team Leader Panel</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
 </head>
 <body>
 <section>
@@ -12,8 +14,8 @@
                  th:src="@{img/teamleader.png}">
             <div class="card-body text-center">
                 <h5 class="card-title">Team Leader Tools</h5>
-                <a class="btn btn-dark" href="/createRecruiter">Create Recruiter</a>
-                <a class="btn btn-dark" href="/createTeamleader">Create Team Leader</a>
+                <a class="btn btn-dark" href="/viewJob">View Job</a>
+                <a class="btn btn-dark" href="/postJob"> Post Job</a>
                 <div class="container m-1">
                     <a class="btn btn-dark " href="/viewRecruiters">View Recruiter</a>
                     <a class="btn btn-dark" href="/viewTeamLeaders">View Team Leaders</a>

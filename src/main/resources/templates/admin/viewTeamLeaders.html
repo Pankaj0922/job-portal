@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: Layout(~{::title},~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:replace="~{base :: Layout(~{::title},~{::body},~{::link})}" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Team Leaders</title>
-    <!-- Include Bootstrap CSS -->
 
+    <title>All Team Leaders</title>
+    <link href="../static/css/color.css" rel="stylesheet" th:href="@{/css/color.css}"/>
 </head>
 <body>
 <section>
